@@ -30,7 +30,7 @@
       "image": "./assets/calexico-fried-chicken-taco.webp",
       "description": "Fried chicken, bacon, avocado, spicy pico de gallo, and chipotle buttermilk sauce. Served on a toasted flour tortilla.",
       "price": 6.5,
-      "number_in_bag": 0
+      "number_in_bag": 4
     },
     {
       "id": 5,

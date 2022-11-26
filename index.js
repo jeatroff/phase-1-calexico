@@ -17,8 +17,9 @@ fetch('http://localhost:3000/menu')
     .then ((response) => response.json())
     .then ((menu) => {
         loadMenu(menu)
+        updateCost(menu)
         loadDish(menu[0]) // Challenge 2
-        addToCart()
+        addToCart(menu)
     })
 
 // Challenge 1
@@ -48,7 +49,7 @@ function loadDish(dish) {
 
 // Challenge 4
 // Bonus Challenge 1
-function addToCart() {
+function addToCart(menu) {
     cartForm.addEventListener("submit", (e) => {
         e.preventDefault()
 
@@ -56,7 +57,7 @@ function addToCart() {
         let cartAmount = parseInt(e.target['cart-amount'].value)
         currentDish.number_in_bag += cartAmount
         loadDish(currentDish)
-        updateCost(cartAmount)
+        updateCost(menu)
         patchToCart()
 
         cartForm.reset()
@@ -64,9 +65,11 @@ function addToCart() {
 }
 
 // Bonus Challenge 2
-function updateCost(cartAmount) {
-    let newTotalCost = parseInt(totalCost.innerText)
-    newTotalCost += currentDish.price * cartAmount
+function updateCost(menu) {
+    let newTotalCost = 0
+    menu.forEach(dish => {
+        newTotalCost += dish.number_in_bag * dish.price
+    })
     totalCost.innerText = newTotalCost
 }
 
